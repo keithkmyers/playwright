@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import annotate from './tools/annotate';
 import common from './tools/common';
 import config from './tools/config';
 import console from './tools/console';
@@ -45,6 +46,7 @@ import type { Tool } from './tools/tool';
 import type { FullConfig } from './config';
 
 export const browserTools: Tool<any>[] = [
+  ...annotate,
   ...common,
   ...config,
   ...console,

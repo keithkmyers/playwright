@@ -17,6 +17,7 @@
 import type * as playwright from 'playwright-core';
 
 export type ToolCapability =
+  'annotation' |
   'config' |
   'core' |
   'core-navigation' |
