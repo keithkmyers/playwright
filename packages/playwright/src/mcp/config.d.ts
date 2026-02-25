@@ -126,6 +126,7 @@ export type Config = {
 
   /**
    * List of enabled tool capabilities. Possible values:
+   *   - 'annotation': Visual page annotations (highlights, arrows, blur).
    *   - 'core': Core browser automation features.
    *   - 'pdf': PDF generation and manipulation.
    *   - 'vision': Coordinate-based interactions.

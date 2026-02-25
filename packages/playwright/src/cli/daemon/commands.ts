@@ -620,6 +620,68 @@ const sessionStorageClear = declareCommand({
   toolParams: () => ({}),
 });
 
+// Annotation
+
+const annotateHighlight = declareCommand({
+  name: 'highlight',
+  description: 'Highlight an element or region on the page',
+  category: 'annotation',
+  args: z.object({
+    ref: z.string().optional().describe('Element ref from page snapshot'),
+  }),
+  options: z.object({
+    style: z.enum(['box', 'circle', 'shade']).optional().describe('Highlight shape (default: box)'),
+    color: z.string().optional().describe('CSS color for the highlight'),
+    label: z.string().optional().describe('Text label near the highlight'),
+    id: z.string().optional().describe('Annotation ID for later removal'),
+  }),
+  toolName: 'browser_annotate',
+  toolParams: ({ ref, style, color, label, id }) => ({ action: 'highlight', ref, style, color, label, id }),
+});
+
+const annotateArrow = declareCommand({
+  name: 'arrow',
+  description: 'Draw an arrow between two elements or points',
+  category: 'annotation',
+  args: z.object({
+    startRef: z.string().describe('Start element ref from page snapshot'),
+    endRef: z.string().describe('End element ref from page snapshot'),
+  }),
+  options: z.object({
+    color: z.string().optional().describe('CSS color for the arrow'),
+    label: z.string().optional().describe('Text label near the arrow'),
+    id: z.string().optional().describe('Annotation ID for later removal'),
+  }),
+  toolName: 'browser_annotate',
+  toolParams: ({ startRef, endRef, color, label, id }) => ({ action: 'arrow', startRef, endRef, color, label, id }),
+});
+
+const annotateBlur = declareCommand({
+  name: 'blur',
+  description: 'Blur an element or region to obscure content',
+  category: 'annotation',
+  args: z.object({
+    ref: z.string().optional().describe('Element ref from page snapshot'),
+  }),
+  options: z.object({
+    intensity: numberArg.optional().describe('Blur radius in pixels (default: 8)'),
+    id: z.string().optional().describe('Annotation ID for later removal'),
+  }),
+  toolName: 'browser_annotate',
+  toolParams: ({ ref, intensity, id }) => ({ action: 'blur', ref, intensity, id }),
+});
+
+const annotateClear = declareCommand({
+  name: 'annotate-clear',
+  description: 'Clear annotations (all or by ID)',
+  category: 'annotation',
+  args: z.object({
+    id: z.string().optional().describe('Annotation ID to clear. Omit to clear all.'),
+  }),
+  toolName: 'browser_annotate',
+  toolParams: ({ id }) => ({ action: 'clear', id }),
+});
+
 // Network
 
 const routeMock = declareCommand({
@@ -936,6 +998,12 @@ const commandsArray: AnyCommandSchema[] = [
   sessionStorageSet,
   sessionStorageDelete,
   sessionStorageClear,
+
+  // annotation category
+  annotateHighlight,
+  annotateArrow,
+  annotateBlur,
+  annotateClear,
 
   // network category
   routeMock,

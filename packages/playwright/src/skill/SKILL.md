@@ -142,6 +142,27 @@ playwright-cli unroute "**/*.jpg"
 playwright-cli unroute
 ```
 
+### Annotation
+
+```bash
+# Highlight an element (box, circle, or shade style)
+playwright-cli highlight e5
+playwright-cli highlight e5 --style=circle --color=blue --label="Target"
+playwright-cli highlight e5 --id=my-highlight
+
+# Draw an arrow between two elements
+playwright-cli arrow e3 e7
+playwright-cli arrow e3 e7 --color=blue --label="Data flow"
+
+# Blur an element to obscure content (PII, confidential data)
+playwright-cli blur e22
+playwright-cli blur e22 --intensity=12
+
+# Clear annotations
+playwright-cli annotate-clear            # clear all
+playwright-cli annotate-clear my-highlight  # clear by ID
+```
+
 ### DevTools
 
 ```bash

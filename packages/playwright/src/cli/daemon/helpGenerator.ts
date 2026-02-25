@@ -74,6 +74,7 @@ const categories: { name: Category, title: string }[] = [
   { name: 'tabs', title: 'Tabs' },
   { name: 'storage', title: 'Storage' },
   { name: 'network', title: 'Network' },
+  { name: 'annotation', title: 'Annotation' },
   { name: 'devtools', title: 'DevTools' },
   { name: 'install', title: 'Install' },
   { name: 'config', title: 'Configuration' },
