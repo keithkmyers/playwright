@@ -68,7 +68,7 @@ export class Response {
 
   async resolveClientFile(template: FilenameTemplate, title: string): Promise<ResolvedFile> {
     let fileName: string;
-    if (template.suggestedFilename)
+    if (template.suggestedFilename && !this._context.config.outputDir)
       fileName = await this._context.workspaceFile(template.suggestedFilename, this._clientWorkspace);
     else
       fileName = await this._context.outputFile(template, { origin: 'llm' });
